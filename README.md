@@ -2,7 +2,7 @@
 Extension of jury project
 # Objective:
 
-* Finding case expected mean,median for total liability and represneting all those values in a single table for both the groups.
+* Finding win rate, case expected mean,median for total liability and representaing all those values in a single table for both the   groups.
 * Simulating hypothesis testing for both group.
 
 # Table for tentative milestones:
