@@ -1,10 +1,14 @@
 
 # coding: utf-8
 
+
+
+
 import pandas as pd
 import numpy as np
 
 ################### Starting code written by Mayuri ###################
+
 
 data = pd.read_csv('jury_data.csv', encoding= 'ISO-8859-1', skiprows=[0,2])
 data.rename(columns={"Was defendant Mesa Management negligent?": "Mesa_Negligent", 
@@ -30,6 +34,7 @@ req_data['Liability'] = req_data['Liability'].map({'Yes': 1, 'No': 0})
 print(req_data.columns)
 
 
+
 print(pd.isnull(req_data).any())
 print(pd.isnull(req_data['Scenario']).any())
 req_data = req_data[np.isfinite(data['Scenario'])]
@@ -47,13 +52,13 @@ print(pd.isnull(req_data).any())
 
 
 
-
 #Changing data types of columns
 req_data['End Date'] = pd.to_datetime(data['End Date'])
 req_data['Start Date'] = pd.to_datetime(data['Start Date'])
 req_data['Scenario']= req_data.Scenario.astype(int)
 req_data['Liability']= req_data.Liability.astype(int)
 req_data.dtypes
+
 
 
 
@@ -81,20 +86,13 @@ req_data['mm_perc'] = req_data['mm_perc'].str.replace("  ", '')
 
 
 
-
 req_data.damages=pd.to_numeric(req_data['damages'])
 req_data.perc_calc=pd.to_numeric(req_data.perc_calc)
 req_data['damages'].fillna(0,inplace=True)  
 req_data['mm_perc'].fillna(1,inplace=True)
 req_data['perc_calc'].fillna(0,inplace=True)
-print(req_data.damages)
+#print(req_data.damages)
 print(req_data.isnull().any())
-
-
-
-
-req_data.damages.isnull().any()
-
 
 
 
@@ -104,9 +102,8 @@ print(req_data[pd.isnull(req_data['Dunn_negligent'])])
 
 
 
-
-
 #EDA
+
 
 
 
@@ -121,7 +118,6 @@ winrate_damages_expected=req_data.groupby('Scenario').aggregate(
 
 
 winrate_damages_expected
-
 
 
 
@@ -142,14 +138,11 @@ winrate_damages_plaintiffwin
 
 
 
-
-
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.factorplot(x='Scenario', y='damages', kind='box',data=req_data)
-
 
 
 
@@ -164,9 +157,11 @@ plt.savefig('Juror Response per each Scenario')
 
 
 
-
 a = req_data['Scenario']
 b = req_data['Liability']
 pd.crosstab(a,b)
 
+
+
 ################### Starting code written by Rosy ###################
+
