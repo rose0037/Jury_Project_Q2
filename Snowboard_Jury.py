@@ -225,24 +225,26 @@ df =pd.read_csv('jury2.tsv', sep='\t+',skiprows=[0,2, 4]+list(range(1,1614,2)) +
        'Timing - Page Submit.6',  'Timing - Click Count.6', 'Timing - First Click.7','Timing - Last Click.7',
        'Timing - Page Submit.7',  'Timing - Click Count.7',
        'Identify the statement that correctly describes the facts of this case. (This is the attention check)',
-       'Was the Carve 3000 snowboard X5 sold Connor McNeil defective?',
-       "Was the defect(s) a substantial factor in causing Connor McNeil's injuries?",
-       'non_economic_damages_suffered',
-       'Please write your answer to the preceding damages question in words (quality check).',
-       'Was Connor McNeil negligent?',
-       'Was Connor McNeil negligence a substantial factor in causing her own injuries?',
-       'What percentage of responsibility for Connor McNeil injuries was each party responsible for? (Answers should add up to 100%) - X5',
-       'What percentage of responsibility for Connor McNeil injuries was each party responsible for? (Answers should add up to 100%) - Connor McNeil',
-       'Was the Carve 3000 snowboard X5 sold Connor McNeil defective?.1',
-       "Was the defect(s) a substantial factor in causing Connor McNeil's injuries?.1",
-       'What economic damages did Connor McNeil suffer?  (in dollars)',
-       'Please write your answer to the preceding damages question in words (quality check)..1',
-       'What non-economic damages did Connor McNeil suffer? (in dollars)',
-       'Please write your answer to the preceding damages question in words (quality check)..2',
+       'Was_snowboard_sold_McNeil_defective_14', ## using this
+       "Is_substantial_factor_McNeil_injuries_14",
+       'Non_economic_damages_McNeil_suffered_14',
+       'Damages_words_14',
+       'Was_McNeil_negligent',
+       'McNeil_negligence_substantial_factor_for_injuries',
+       'Percentage_of_responsibility_X5',
+       'Percentage_of_responsibility_McNeil',
+       'Was_snowboard_sold_McNeil_defective_58',
+       "Is_substantial_factor_McNeil_injuries_58",
+       'Economic_damages_McNeil_suffer_58',
+       'Economic_Damages_In_Word_58',
+       'Non_economic_damages_McNeil_suffered_58',
+       'Non_Economic_Damages_In_Word_58',
        'Please explain why you arrived at your decision? (50 character minimum)',
        'Did the fact that X5 added core inserts to the later Carve 3000 model, affect your view as to whether the original Carve 3000 was defective?',
        'Were you able to ignore the  fact that X5 added core inserts to the later Carve 3000 model when deciding whether the original Carve 3000 was defective?',
        'Path'])
+        
+df.head()
         
 ## Data type
 df.dtypes
