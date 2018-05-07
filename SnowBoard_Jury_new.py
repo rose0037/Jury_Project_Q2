@@ -180,7 +180,7 @@ sns.factorplot(x='Scenario', y='damages', kind='box',data=req_data)
 
 
 pd.crosstab(data.Scenario,data.Liability).plot(kind='bar')
-plt.title('Juror Response per each Scenario')
+plt.title('Purchase Frequency for Job Title')
 plt.xlabel('Scenario')
 plt.ylabel('Liability')
 plt.savefig('Juror Response per each Scenario')
@@ -402,6 +402,7 @@ newdf['Liability'].replace(['4', '6' , ''], ['Yes','No', 'No Reponse'], inplace 
 ## For the Path we are replaced 5...8 with 1....4
 newdf['Path'].replace([5, 6 ,7,8], [1,2,3,4], inplace = True)
 newdf['Path']= newdf.Path.astype(int)
+newdf.head()
 
 
 # In[17]:
@@ -484,12 +485,115 @@ winrate_damages_plaintiffwin
 
 # # Box Plot for Total Damages(Both Economic Damage and NonEconomic Damage) vs Path.
 
-# In[24]:
+# In[22]:
 
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sns.factorplot(x='Path', y='Total_Damages', kind='box',data=newdf, size=6)
+sns.factorplot(x='Path', y='Total_Damages', kind='box',data=newdf, size=5)
+
+
+# In[23]:
+
+
+req_data.head()
+
+
+# In[41]:
+
+
+newdf.columns
+newdf1=pd.DataFrame(newdf[["StartDate","EndDate","Liability",'Total_Damages','Path','Was_McNeil_negligent']])
+newdf1
+
+
+# In[45]:
+
+
+newdf1.rename(columns={"StartDate": "Start Date", 
+                         "EndDate":"End Date",
+                         "Total_Damages":"damages",
+                       "Was_McNeil_negligent":"Plaintiff_negligent"
+                         },inplace=True)
+
+newdf1['Plaintiff_negligent'] = newdf1['Plaintiff_negligent'].map({1:"Yes", 2:"No"})
+newdf1['Liability'] = newdf1['Liability'].map({"Yes":1, "No":0})
+
+
+# In[46]:
+
+
+req_data.columns
+req_data1=pd.DataFrame(req_data[["Start Date","End Date","Liability",'damages','Scenario','perc_calc','mm_perc','Dunn_negligent']])
+req_data1.rename(columns={
+                       "Scenario":"Path","Dunn_negligent":"Plaintiff_negligent"
+                         },inplace=True)
+
+
+# In[47]:
+
+
+frames=[newdf1,req_data1]
+merge_data = pd.concat(frames, keys=['x', 'y'])
+
+merge_data
+
+
+# ##  Case Expected Value Damages for the merge data
+# ### Showing the total expected damages mean,median and sd with winrate percentage (entire version)
+
+# In[49]:
+
+
+merge_data
+merge_data['winrate_percentage']=merge_data.Liability
+merge_data['damages_mean']=merge_data.damages+merge_data.perc_calc
+merge_data['damages_median']=merge_data.damages
+merge_data['damages_sd']=merge_data.damages
+
+
+
+winrate_damages_expected=merge_data.groupby('Path').aggregate(
+    {'winrate_percentage': np.mean, 'damages_mean': np.mean,'damages_median':np.median,'damages_sd':np.std})
+
+
+winrate_damages_expected.winrate_percentage*=100
+winrate_damages_expected
+
+
+
+# In[ ]:
+
+
+#To retrive data based on the keys:
+merge_data.loc['y']
+
+
+# ## Finding the Damages, mean , median and SD when plaintiff wins for the merge data
+
+# In[51]:
+
+
+
+#req_data['winrate_percentage']=np.mean(req_data.Juror_Response)
+#print(req_data)
+merge_data['mm_perc'].fillna(1,inplace=True)
+merge_data['damages_mean1']=merge_data.damages*pd.to_numeric(merge_data.mm_perc)
+merge_data['damages_median1']=merge_data.damages
+merge_data['damages_sd1']=merge_data.damages
+#print(req_data.mm_perc)
+
+winrate_damages_plaintiffwin=merge_data.loc[(merge_data['Plaintiff_negligent']=='No') & (merge_data['Liability']==1)].groupby('Path').aggregate({'damages_mean1': np.mean,'damages_median1':np.median,'damages_sd1':np.std})
+
+
+winrate_damages_plaintiffwin
+
+
+
+# In[54]:
+
+
+
 
