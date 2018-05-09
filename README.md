@@ -29,7 +29,7 @@ Q41 Were you able to ignore the  fact that X5 added core inserts to the later Ca
 <td>April 4th week</td><td>EAD and graph plots</td><td>Completed</td>
 </tr>
 <tr>
-<td>May 1st week</td><td>Merging data</td><td>In Progress</td>
+<td>May 1st week</td><td>Merging data</td><td>Completed</td>
 </tr>
 <tr>
 <td>May 2nd week</td><td>Finding win rate, case expected mean,median for total liability and representaing all those values in a single table for both the   groups</td><td>In Progress</td>
