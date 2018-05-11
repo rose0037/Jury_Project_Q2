@@ -3,7 +3,7 @@
 
 # ## Old Dataset(Staircase) 
 
-# In[1]:
+# In[2]:
 
 
 
@@ -64,7 +64,7 @@ req_data.dtypes
 data.columns.get_loc("Liability")
 
 
-# In[2]:
+# In[3]:
 
 
 #Cleaning Damages and perc_calc column
@@ -91,7 +91,7 @@ print(req_data.isnull().any())
 print(req_data[pd.isnull(req_data['Dunn_negligent'])])
 
 
-# In[3]:
+# In[4]:
 
 
 #EDA
@@ -108,7 +108,7 @@ winrate_damages_expected=req_data.groupby('Scenario').aggregate(
 winrate_damages_expected
 
 
-# In[4]:
+# In[5]:
 
 
 
@@ -126,7 +126,7 @@ winrate_damages_plaintiffwin=req_data.loc[(req_data['Dunn_negligent']=='No') & (
 winrate_damages_plaintiffwin
 
 
-# In[5]:
+# In[6]:
 
 
 import matplotlib as mpl
@@ -137,7 +137,7 @@ sns.factorplot(x='Scenario', y='damages', kind='box',data=req_data)
 
 
 
-# In[6]:
+# In[7]:
 
 
 pd.crosstab(data.Scenario,data.Liability).plot(kind='bar')
@@ -155,7 +155,7 @@ pd.crosstab(a,b)
 
 # ## New Dataset(Snowboard) 
 
-# In[7]:
+# In[8]:
 
 
 import pandas as pd
@@ -217,7 +217,7 @@ df =pd.read_csv('Low_Anchor.tsv', sep='\t+',skiprows=[0,2, 4]+list(range(1,1614,
 df.head()
 
 
-# In[8]:
+# In[9]:
 
 
 df.dtypes
@@ -225,7 +225,7 @@ df.dtypes
 
 # ## Replacing hexadecimal value of damages'/x00' to ''(empty string)
 
-# In[9]:
+# In[10]:
 
 
 
@@ -253,7 +253,7 @@ for i in range(len(df)):
 
 # ### After dealing with Special Character in data, lets change the Data type of required columns 
 
-# In[10]:
+# In[11]:
 
 
 
@@ -284,7 +284,7 @@ df.dtypes
 # *** Note  Failed parsing df.Q41 =pd.to_numeric(df.Q41) 
 # <font color = red> Need to check the data. It has one invalid row '1,3'</font>
 
-# In[11]:
+# In[12]:
 
 
 df.Q41.unique()
@@ -292,7 +292,7 @@ df.Q41.unique()
 
 # ## Extracting the required columns and storing it in "newdf" data frame.
 
-# In[12]:
+# In[13]:
 
 
 newdf =pd.DataFrame(df[['StartDate', 'EndDate','Duration',
@@ -311,15 +311,57 @@ newdf =pd.DataFrame(df[['StartDate', 'EndDate','Duration',
        'Q41',
        'Path']])
         
-##newdf.head(5)
 newdf.sample(5)
 
+
+# ## Handling Percentage Calculation    
+
+# We have two columns that save the percentage of responsibility for X5 and McNeil. The total sum should be 100. 
+# If it is less than 100 or greater than 100, then we need to change to relative percentage , so that it should be round to 100.
+# 
+# Lets see what are the data in these columns and if there is any null/NaN values , then we have to deal with that.
+
+# In[14]:
+
+
+print("Unique values for _X5 ", newdf.Percentage_of_responsibility_X5.unique())
+print("Unique values for _McNiel ", newdf.Percentage_of_responsibility_McNeil.unique())
+
+
+# In Both the columns, we have NaN values. Before replacing NaN with 0s, lets first check which rows have 0 values.
+
+# In[15]:
+
+
+newdf.query("Percentage_of_responsibility_McNeil == 0")
+
+
+# As there is one row with 0 value, we are replacing NaN with some nagative values say <font color = red >'-1'.</font> 
+
+# In[16]:
+
+
+newdf['Percentage_of_responsibility_X5'].fillna(-1 ,inplace=True)
+newdf['Percentage_of_responsibility_McNeil'].fillna(-1,inplace=True)
+newdf.Percentage_of_responsibility_McNeil.unique()
+
+
+# Lets see the distribution of total percentage.
+
+# In[17]:
+
+
+newdf['Total_perc'] = newdf['Percentage_of_responsibility_X5']+newdf['Percentage_of_responsibility_McNeil']
+newdf.query('Total_perc < 100 & Total_perc > 0 |Total_perc > 100 ')
+
+
+# So for all cases each percentage are summing to 100 and there is no "Total Percentage" greater than or less than 100.
 
 # ## See how many missing data points we have
 
 # #### Ok, now we know that we do have some missing values. Let's see how many we have in each column.
 
-# In[13]:
+# In[18]:
 
 
 import numpy as np
@@ -334,7 +376,7 @@ total_missing = missing_values_count.sum()
 print('Percent of data that is missing: ' , (total_missing/total_cells) * 100)
 
 
-# In[14]:
+# In[19]:
 
 
 newdf.shape
@@ -343,7 +385,7 @@ newdf.shape
 # ### As we are just working on from path 1 to 8, Lets remove path with value 0.
 # So the number of rows to be removed having Path as 0 can be checked usig the ".shape"
 
-# In[15]:
+# In[20]:
 
 
 newdf[newdf.Path <=0].shape
@@ -351,7 +393,7 @@ newdf[newdf.Path <=0].shape
 
 # So we have 13 rows . Let's have a look on those rows.
 
-# In[16]:
+# In[21]:
 
 
 newdf[newdf.Path <=0]
@@ -359,7 +401,7 @@ newdf[newdf.Path <=0]
 
 # <font color = 'red' size = "5"> As we can see there are 13 observation with path value equal to 0. We are removing these observation </font>
 
-# In[17]:
+# In[22]:
 
 
 newdf = newdf[newdf.Path > 0]
@@ -376,7 +418,7 @@ newdf = newdf[newdf.Path > 0]
 # 
 # Let’s filter anyone who spent less than 10 second less than the whole time.  e.g 14:37(877), 15:01(901) etc.
 
-# In[18]:
+# In[23]:
 
 
 
@@ -385,7 +427,7 @@ Filter_data=newdf[((newdf.Path == 1) & (df.Duration>877))|((newdf.Path == 2) & (
 
 # ## Replacing the Null Values with empty string(Easy to convert to other datatypes Later)
 
-# In[19]:
+# In[24]:
 
 
 
@@ -419,7 +461,7 @@ newdf.head(5)
 # 
 # Later we converted the data type of Path as "Int".
 
-# In[20]:
+# In[25]:
 
 
 newdf['Path'].replace([5, 6 ,7,8], [1,2,3,4], inplace = True)
@@ -434,7 +476,7 @@ newdf['Path']= newdf.Path.astype(int)
 # For simplicity to plot Path vs damages we combined all damages into one column and named it 
 # as "Total_Damages". 
 
-# In[21]:
+# In[26]:
 
 
 newdf.Economic_damages_McNeil_suffer_58        = pd.to_numeric(newdf.Economic_damages_McNeil_suffer_58)
@@ -446,7 +488,7 @@ newdf.Non_economic_damages_McNeil_suffered_14  = pd.to_numeric(newdf.Non_economi
 # 
 # #### We have economic damages only from Path 5 to 8, so ploting the graph for the same.
 
-# In[22]:
+# In[27]:
 
 
 import matplotlib as mpl
@@ -459,7 +501,7 @@ _ = plt.set(xlabel='Path', ylabel='Economic Damages')
 
 # ## Plot of Path(5 to 8) vs Non Economic Damages.
 
-# In[23]:
+# In[28]:
 
 
 import matplotlib as mpl
@@ -472,14 +514,14 @@ _ = plt1.set(xlabel='Path', ylabel='Non Economic Damages')
 
 # ## Plot of Path(1 to 4) vs Non Economic Damages.
 
-# In[24]:
+# In[29]:
 
 
 plt2 = sns.factorplot(x='Path', y='Non_economic_damages_McNeil_suffered_14', kind='box',data=newdf, size=7)
 _ = plt2.set(xlabel='Path', ylabel='Non Economic Damages')
 
 
-# In[25]:
+# In[30]:
 
 
 #create new column for non economic damages(for path 1 to 4 and path 5 to 8--do boxplot)
@@ -489,7 +531,7 @@ _ = plt2.set(xlabel='Path', ylabel='Non Economic Damages')
 
 # For the box plot, we need to replace the empty string with 0. But before Filling the NaN values with 0 , lets first check if any juror has put 0 intentionally.
 
-# In[26]:
+# In[31]:
 
 
 newdf.query('Non_economic_damages_McNeil_suffered_14 == 0 | Non_economic_damages_McNeil_suffered_58 == 0 |Economic_damages_McNeil_suffer_58 ==0')
@@ -498,7 +540,7 @@ newdf.query('Non_economic_damages_McNeil_suffered_14 == 0 | Non_economic_damages
 # <font color='red'> We found that one row has 0 value for Non_economic damages McNeil suffered. 
 # </font>
 
-# In[27]:
+# In[32]:
 
 
 newdf.Economic_damages_McNeil_suffer_58.fillna(0, inplace = True)
@@ -510,7 +552,7 @@ newdf['Total_Damages'] =  newdf['Economic_damages_McNeil_suffer_58']+newdf['Non_
 
 # Lets see how many rows have Total Damage as 0. 
 
-# In[28]:
+# In[33]:
 
 
 (newdf.Total_Damages==0).sum()
@@ -520,7 +562,7 @@ newdf['Total_Damages'] =  newdf['Economic_damages_McNeil_suffer_58']+newdf['Non_
 # 
 # 1)  Plot including Total Damages as **0** 
 
-# In[29]:
+# In[34]:
 
 
 import matplotlib as mpl
@@ -545,7 +587,7 @@ _ = sns.violinplot(x="Path", y="Total_Damages", data=newdf, inner = 'box').set(y
 
 # 2) Box plot excluding 0s
 
-# In[30]:
+# In[35]:
 
 
 damage_df = newdf[newdf.Total_Damages >0]
@@ -556,13 +598,13 @@ sns.factorplot(x='Path', y='Total_Damages', kind='box',data=damage_df, size=6)
 # 
 # Or change to 500000(As per requirement) <font color= red> To--do </font>
 
-# In[31]:
+# In[36]:
 
 
 sns.factorplot(x='Path', y='Total_Damages', kind='violin',data=damage_df, size=6)
 
 
-# In[32]:
+# In[37]:
 
 
 q = newdf["Total_Damages"].quantile(0.99)
@@ -572,7 +614,7 @@ newdf.query("Total_Damages >= 500000")
 
 # So Lets remove the outlier and plot the box plot again.
 
-# In[33]:
+# In[38]:
 
 
 newdf1 = newdf[(newdf.Total_Damages < q) & (newdf.Total_Damages >0) ]
@@ -588,7 +630,7 @@ sns.factorplot(x='Path', y='Total_Damages', kind='box',data=newdf1, size=5)
 # For plotting a single graph for all the path, we merge these two columns into a new column called **"Liability"**.
 # 
 
-# In[34]:
+# In[39]:
 
 
 newdf['Liability'] = newdf['Was_snowboard_sold_McNeil_defective_14'] + newdf['Was_snowboard_sold_McNeil_defective_58']
@@ -596,13 +638,13 @@ newdf['Liability'] = newdf['Was_snowboard_sold_McNeil_defective_14'] + newdf['Wa
 
 # Liability columns have numeric values. We have replaced it with 4 for <font color = green>'Yes'</font>  and 6 for <font color = red>'No'</font>. Liability with blank is replace with "No Reponse.
 
-# In[35]:
+# In[40]:
 
 
 newdf['Liability'].replace(['4', '6' , ''], ['Yes','No', 'No Reponse'], inplace = True)
 
 
-# In[36]:
+# In[41]:
 
 
 ## Cleaning data(checking if any column has null values)
@@ -611,7 +653,7 @@ newdf.isnull().any()
 
 # ### As we have made all necessary changes, let's plot the graph.
 
-# In[37]:
+# In[42]:
 
 
 ## Plot Juror Responce vs Path
@@ -634,7 +676,7 @@ pd.crosstab(a,b)
 
 # ## Finding the Winrate, Expected Damages, mean , median and SD
 
-# In[38]:
+# In[43]:
 
 
 ## Finding winrate percentage for each path 
@@ -642,7 +684,7 @@ ratedf=pd.DataFrame(newdf[['Liability','Path','Was_McNeil_negligent']])
 ratedf['winrate_percentage']=ratedf.Liability
 
 
-# In[39]:
+# In[44]:
 
 
 
@@ -664,7 +706,7 @@ winrate_damages_expected
 
 # ## Finding the Damages, mean , median and SD when plaintiff wins.
 
-# In[40]:
+# In[45]:
 
 
 
@@ -684,7 +726,7 @@ winrate_damages_plaintiffwin
 # With respect to the first question, I realize that answers from participants in versions 1 and 5 are meaningless.  They did not see evidence of added core inserts. As far as the analysis, I think we want to see if this answer predicted how people responded to the liability questions. For example, did people that said "Yes this evidence strongly suggested the Carve 3000 was defective” find liability more often than people that answered “No”. 
 # </font>
 # 
-# Here Q40 is "Did the fact that X5 added core inserts to the later Carve 3000 model, affect your view as to whether the original Carve 3000 was defective?"
+# Here Q40 is **"Did the fact that X5 added core inserts to the later Carve 3000 model, affect your view as to whether the original Carve 3000 was defective?"**
 # 
 # The Values are: 
 # - 1 = Yes, it strongly suggested that the original Carve 3000 was defective.
@@ -693,13 +735,16 @@ winrate_damages_plaintiffwin
 # 
 # So first lets check the brief summary table for each scenarios.
 
-# In[41]:
+# In[46]:
 
 
 a = newdf['Q40'].replace([1.0,2.0,3.0], ['Yes','Maybe','No'])
 a = a[a.apply(len) > 0]
 b = newdf['Liability']
-pd.crosstab([df.Path,b], a)
+#p = pd.crosstab([df.Path,b], a,  margins=True )
+
+p = pd.crosstab([b,a], df.Path,  margins=True , margins_name='Total')
+p
 
 
 # ## Observation 
@@ -708,13 +753,85 @@ pd.crosstab([df.Path,b], a)
 # 
 # - Among 238 Juror who said No to question 40, 185 said No for Liability i:e <font color = red> No for "Was the Carve 3000  snowboard X5 sold Connor McNeil defective?" </font> and 54 Juror said 'Yes' for Liability. 
 # 
-# #### Below is the plot for Path 1 and 5
+# - **isin** returns the values in df['Path'] that are in the given list, and the ~ at the beginning is essentially a not operator.
+# 
+# #### Below is the plot for Path 2,3,4,6,7,8
 
-# In[42]:
+# In[47]:
 
 
-newdf15 = df[(df.Path == 1)| (df.Path == 5)]
-_ = pd.crosstab([newdf15.Path,b], a).plot(kind='bar', fontsize = 10, figsize=(7,5))
+newdf15 = df[~df['Path'].isin([1,5])]
+_ = pd.crosstab([newdf15.Path,a], b).plot(kind='bar', fontsize = 10, figsize=(15,5))
+
+
+# One more **comment in the 1st question**.  We also want to see if the jury instructions in 3,4 and 7,8 help participant resist the evidence.  
+# 
+# So we want to also compare if verdicts as a function of yes, no, maybe in <font color = red>2 and 5 are </font>different than those in 3,4,7 & 8.  If they do, we want to see if the different instructions matter.  That is verdicts as function of yes, no, maybe or different in 3 and 7 vs 4 and 8.
+# 
+# As per the above table.
+# 
+# <font color = red>Doubt : 2 and 5 or 2 vs 6</font>
+# 
+# 
+
+# In[48]:
+
+
+## Percentage for each path 
+
+p1 = p.T/p["Total"]*100
+p1 = p1.T
+p1
+## Lets only check for 2 and 5
+print("Printing Total count of liability for path 2 and 5 ")
+print("---------------------------------------------------------- ")
+print(p[[2,5]])
+
+print("---------------------------------------------------------- ")
+print("Printing the percentage from of liability for path 2 and 5 ")
+print("---------------------------------------------------------- ")
+print(p1[[2,5]])
+
+
+## Lets only check for 3 and 7
+print("---------------------------------------------------------- ")
+print("Printing Total count of liability for path 3 and 7 ")
+print("---------------------------------------------------------- ")
+print(p[[3,7]])
+
+print("---------------------------------------------------------- ")
+print("Printing the percentage from of liability for path 3 and 7 ")
+print("---------------------------------------------------------- ")
+print(p1[[3,7]])
+
+
+## Lets only check for 4 and 8
+print("---------------------------------------------------------- ")
+print("Printing Total count of liability for path 4 and 8 ")
+print("---------------------------------------------------------- ")
+print(p[[4,8]])
+
+print("---------------------------------------------------------- ")
+print("Printing the percentage from of liability for path 4 and 8 ")
+print("---------------------------------------------------------- ")
+print(p1[[4,8]])
+
+
+# In[49]:
+
+
+newdf25 = df[df['Path'].isin([2,5])]
+_ = pd.crosstab([newdf25.Path,a], b).plot(kind='bar', fontsize = 10,title='Plot for 2 and 5', figsize=(7,5))
+plt.xlabel('Path 2 and 5, Q40')
+
+newdf37 = df[df['Path'].isin([3,7])]
+_ = pd.crosstab([newdf37.Path,a], b).plot(kind='bar', fontsize = 10,title='Plot for 3 and 7', figsize=(7,5))
+plt.xlabel('Path 3 and 7, Q40')
+
+
+newdf48 = df[df['Path'].isin([4,8])]
+_ = pd.crosstab([newdf48.Path,a], b).plot(kind='bar', fontsize = 10,title='Plot for 4 and 8',  figsize=(7,5))
+plt.xlabel('Path 4 and 8, Q40')
 
 
 # ## Question 2:
@@ -723,28 +840,48 @@ _ = pd.crosstab([newdf15.Path,b], a).plot(kind='bar', fontsize = 10, figsize=(7,
 # 
 # .
 # 
-# <font color = red>Q41: 'Were you able to ignore the  fact that X5 added core inserts to the later Carve 3000 model when deciding whether the original Carve 3000 was defective?'</font>
+# **<font color = red>Q41: 'Were you able to ignore the  fact that X5 added core inserts to the later Carve 3000 model when deciding whether the original Carve 3000 was defective?'</font>**
 # 
-# ### Plot for Path 3, 4 , 7 and 8
+# - Yes, I was able to ignore that evidence  (1) 
+# - Not Sure  (2) 
+# - No, I was not able to ignore that evidence  (3) 
+# 
+# ### Plot for Path 1, 2 , 5 and 7
+# 
+# <font color = red> Latest response: 2.  It appears this time you discarded the correct data (1,2, 5, and 6).  In addition to the information you provided, we want to compare verdict rates for people that yes vs. no vs. maybe</font>
 
-# In[43]:
+# In[60]:
 
 
-a = newdf['Q41'].replace(['1','2','3'], ['Yes','Maybe','No'])
-a = a[a.apply(len) > 0]
+a1 = newdf['Q41'].replace(['1','2','3'], ['Yes','NotSure','No'])
+a1= a1[a1.apply(len) > 0]
 
-newdf3478 = df[(df.Path == 3)| (df.Path == 4)|(df.Path == 7)| (df.Path == 8)]
-_ = pd.crosstab([newdf3478.Path,b], a).plot(kind='bar', fontsize = 10, figsize=(7,5))  
+newdf3478 = df[df.Path.isin([1,2,5,6])]
+_ = pd.crosstab([newdf3478.Path,a1], b).plot(kind='bar', fontsize = 10, figsize=(15,5))  
 
 
-# In[44]:
+# ## Observation
+# 
+# We have found some invalid data in the Column ("1,3")
+# 
+# **To do**-
+# 
+# **<font color = red>Need to check what should be the appropriate interpretaion of this value.</font>**
+
+# In[51]:
+
+
+newdf['Q41'].unique()
+
+
+# In[52]:
 
 
 newdf.columns
 newdf1=pd.DataFrame(newdf[["StartDate","EndDate","Duration","Liability",'Total_Damages','Path','Was_McNeil_negligent']])
 
 
-# In[45]:
+# In[53]:
 
 
 newdf1.rename(columns={"StartDate": "Start Date", 
@@ -757,7 +894,7 @@ newdf1['Plaintiff_negligent'] = newdf1['Plaintiff_negligent'].map({1:"Yes", 2:"N
 newdf1['Liability'] = newdf1['Liability'].map({"Yes":1, "No":0})
 
 
-# In[46]:
+# In[54]:
 
 
 req_data.columns
@@ -767,13 +904,13 @@ req_data1.rename(columns={
                          },inplace=True)
 
 
-# In[47]:
+# In[55]:
 
 
 frames=[newdf1,req_data1]
 merge_data = pd.concat(frames, keys=['x', 'y'])
 
-merge_data
+merge_data.head()
 
 
 # Case Expected Value Damages for the merge data
@@ -781,7 +918,7 @@ merge_data
 # 
 # 
 
-# In[48]:
+# In[56]:
 
 
 merge_data
@@ -801,7 +938,7 @@ winrate_damages_expected
 
 
 
-# In[49]:
+# In[57]:
 
 
 #To retrive data based on the keys:
@@ -810,7 +947,7 @@ merge_data.loc['y']
 
 # ## Finding the Damages, mean , median and SD when plaintiff wins for the merge data
 
-# In[50]:
+# In[58]:
 
 
 #req_data['winrate_percentage']=np.mean(req_data.Juror_Response)
@@ -828,7 +965,7 @@ winrate_damages_plaintiffwin
 
 
 
-# In[51]:
+# In[59]:
 
 
 import pandas as pd
