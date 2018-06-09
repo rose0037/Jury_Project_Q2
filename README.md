@@ -2,16 +2,14 @@
 Extension of jury project
 # Objective:
 
-* Finding win rate, case expected mean,median for total liability and representaing all those values in a single table for both the   groups.
-* Simulating hypothesis testing for both group.
-
-* From Dr. Bernard some more questions. I wanted to add a few thoughts to our 2  debriefing questions at the end.
-Q40 Did the fact that X5 added core inserts to the later Carve 3000 model, affect your view as to whether the original Carve 3000 was defective?
-
-Q41 Were you able to ignore the  fact that X5 added core inserts to the later Carve 3000 model when deciding whether the original Carve 3000 was defective?
-
-1.  With respect to the first question, I realize that answers from participants in versions 1 and 5 are meaningless. They did not see evidence of added core inserts. As far as the analysis, I think we want to see if this answer predicted how people responded to the liability questions. For example, did people that said "Yes this evidence strongly suggested the Carve 3000 was defective” find liability more often than people that answered “No”.    We may want to break this down by scenario too.
-2.  With respect to the 2nd questions, again answers from participants in versions 1,2 and 5 and 6  are meaningless. They did not receive the jury instruction telling them to ignore the evidence.  Again, we should do the same analysis as above. Do people that say they can ignore the evidence have lower liability verdicts than people that say they cannot ignore the evidence (for the remaining scenarios 3-4 and 7-8).
+* Path 1-4 vs Path 5-8 Regression Analysis
+* Regression Analysis for the Stair case and Snowboard Scenarios
+* Linear model on Discounted Damages and the Path
+* Damages calculations for each Path of new dataset
+* Regression Analysis of Liability vs Path, Education and Income
+* Plots for the data
+* Addressing questions from professor Bernard regarding the influence of Q40 and Q41 on Liability.
+* Damage calculations for the merged dataset
 
 # Table for tentative milestones:
 
