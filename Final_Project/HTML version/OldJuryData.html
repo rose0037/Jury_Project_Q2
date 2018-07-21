@@ -11789,7 +11789,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># coding: utf-8</span>
@@ -11805,14 +11805,15 @@ div#notebook {
                          <span class="s2">&quot;What percentage of responsibility for Mackenzie Dunn&#39;s injuries was each party responsible for? (Answers should add up to 100%) - Mesa Management Co&quot;</span><span class="p">:</span><span class="s2">&quot;Mesa_reponsible_percentage&quot;</span><span class="p">,</span>
                          <span class="s2">&quot;Path&quot;</span><span class="p">:</span><span class="s2">&quot;Scenario&quot;</span><span class="p">,</span>
                          <span class="s2">&quot;Was MacKenzie Dunn negligent?&quot;</span><span class="p">:</span><span class="s2">&quot;Dunn_negligent&quot;</span><span class="p">,</span>
-                         <span class="s2">&quot;Unnamed: 63&quot;</span><span class="p">:</span><span class="s2">&quot;perc_calc&quot;</span>
+                         <span class="s2">&quot;Unnamed: 63&quot;</span><span class="p">:</span><span class="s2">&quot;perc_calc&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;Which of the following best describes your total household income?&quot;</span><span class="p">:</span><span class="s2">&quot;Income&quot;</span>
                          <span class="p">},</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1">#data[&#39;mm_perc&#39;] = np.where(data[&#39;Mesa_reponsible_percentage&#39;]&gt;=1, data[&#39;perc_calc&#39;],data[&#39;Mesa_reponsible_percentage&#39;])</span>
 <span class="n">data</span><span class="p">[</span><span class="s1">&#39;mm_perc&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Mesa_reponsible_percentage&#39;</span><span class="p">]</span>
 <span class="n">req_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s2">&quot;Mesa_Negligent&quot;</span><span class="p">,</span><span class="s2">&quot;damages&quot;</span><span class="p">,</span><span class="s2">&quot;Liability&quot;</span><span class="p">,</span>
                  <span class="s2">&quot;gender&quot;</span><span class="p">,</span>
                  <span class="s2">&quot;damages_word&quot;</span><span class="p">,</span>
-                 <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span><span class="s2">&quot;Dunn_negligent&quot;</span><span class="p">,</span><span class="s2">&quot;perc_calc&quot;</span><span class="p">,</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span><span class="s2">&quot;End Date&quot;</span><span class="p">,</span><span class="s2">&quot;mm_perc&quot;</span><span class="p">]])</span>
+                 <span class="s2">&quot;Scenario&quot;</span><span class="p">,</span><span class="s2">&quot;Dunn_negligent&quot;</span><span class="p">,</span><span class="s2">&quot;perc_calc&quot;</span><span class="p">,</span><span class="s2">&quot;Start Date&quot;</span><span class="p">,</span><span class="s2">&quot;End Date&quot;</span><span class="p">,</span><span class="s2">&quot;mm_perc&quot;</span><span class="p">,</span><span class="s2">&quot;Income&quot;</span><span class="p">]])</span>
 
 
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Liability&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Liability&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
@@ -11837,10 +11838,46 @@ div#notebook {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Index([&#39;Mesa_Negligent&#39;, &#39;damages&#39;, &#39;Liability&#39;, &#39;gender&#39;, &#39;damages_word&#39;,
        &#39;Scenario&#39;, &#39;Dunn_negligent&#39;, &#39;perc_calc&#39;, &#39;Start Date&#39;, &#39;End Date&#39;,
-       &#39;mm_perc&#39;],
+       &#39;mm_perc&#39;, &#39;Income&#39;],
       dtype=&#39;object&#39;)
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mm_perc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([        nan,  0.65      , 65.        ,  0.6       ,  0.1       ,
+        0.5       ,  0.7       ,  0.85      ,  0.45      ,  0.        ,
+        0.75      ,  0.51      ,  0.9       ,  0.3       ,  0.2       ,
+        0.4       ,  0.49526316])</pre>
+</div>
+
 </div>
 
 </div>
@@ -11857,7 +11894,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">req_data</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
@@ -11913,6 +11950,7 @@ perc_calc          True
 Start Date        False
 End Date          False
 mm_perc            True
+Income             True
 dtype: bool
 True
 False
@@ -11927,6 +11965,7 @@ perc_calc         False
 Start Date        False
 End Date          False
 mm_perc           False
+Income            False
 dtype: bool
 </pre>
 </div>
@@ -11934,7 +11973,7 @@ dtype: bool
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -11959,7 +11998,7 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">req_data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">())</span>
@@ -11968,6 +12007,7 @@ dtype: bool
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;perc_calc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
 <span class="c1">#req_data[&#39;mm_perc&#39;] = req_data[&#39;mm_perc&#39;].str.replace(&quot;$&quot;, &#39;&#39;)</span>
 <span class="c1">#req_data[&#39;mm_perc&#39;] = req_data[&#39;mm_perc&#39;].str.replace(&quot;,&quot;, &#39;&#39;)</span>
 <span class="c1">#req_data[&#39;mm_perc&#39;] = req_data[&#39;mm_perc&#39;].str.replace(&quot;  &quot;, &#39;&#39;)</span>
@@ -12010,6 +12050,7 @@ perc_calc         False
 Start Date        False
 End Date          False
 mm_perc           False
+Income            False
 dtype: bool
 Mesa_Negligent    False
 damages           False
@@ -12022,6 +12063,7 @@ perc_calc         False
 Start Date        False
 End Date          False
 mm_perc           False
+Income            False
 dtype: bool
     Mesa_Negligent  damages  Liability  gender damages_word  Scenario  \
 0               No      0.0          0  Female            0         1   
@@ -12086,72 +12128,308 @@ dtype: bool
 425            Yes      0.0          0  Female            0         5   
 426            Yes      0.0          0    Male            0         5   
 
-    Dunn_negligent  perc_calc          Start Date            End Date  mm_perc  
-0              NaN        0.0 2017-09-29 13:58:00 2017-09-29 14:16:00      1.0  
-1              NaN        0.0 2017-09-29 14:00:00 2017-09-29 14:18:00      1.0  
-2              NaN        0.0 2017-09-29 13:57:00 2017-09-29 14:19:00      1.0  
-3              NaN        0.0 2017-09-29 14:01:00 2017-09-29 14:21:00      1.0  
-4              NaN        0.0 2017-09-29 14:04:00 2017-09-29 14:23:00      1.0  
-5              NaN        0.0 2017-09-29 14:06:00 2017-09-29 14:25:00      1.0  
-6              NaN        0.0 2017-09-29 14:06:00 2017-09-29 14:26:00      1.0  
-7              NaN        0.0 2017-09-29 14:16:00 2017-09-29 14:35:00      1.0  
-8              NaN        0.0 2017-09-29 14:27:00 2017-09-29 14:49:00      1.0  
-9              NaN        0.0 2017-09-29 14:44:00 2017-09-29 15:02:00      1.0  
-10             NaN        0.0 2017-09-29 15:09:00 2017-09-29 15:27:00      1.0  
-11             NaN        0.0 2017-09-29 15:55:00 2017-09-29 16:16:00      1.0  
-12             NaN        0.0 2017-09-29 18:28:00 2017-09-29 18:51:00      1.0  
-13             NaN        0.0 2017-09-29 19:54:00 2017-09-29 20:14:00      1.0  
-14             NaN        0.0 2017-09-29 20:56:00 2017-09-29 21:16:00      1.0  
-15             NaN        0.0 2017-09-30 11:47:00 2017-09-30 12:04:00      1.0  
-16             NaN        0.0 2017-09-30 12:56:00 2017-09-30 13:13:00      1.0  
-17             NaN        0.0 2017-09-30 14:15:00 2017-09-30 14:26:00      1.0  
-18             NaN        0.0 2017-09-30 16:19:00 2017-09-30 16:38:00      1.0  
-19             NaN        0.0 2017-10-01 21:22:00 2017-10-01 21:40:00      1.0  
-20             NaN        0.0 2017-10-01 21:47:00 2017-10-01 22:07:00      1.0  
-21             NaN        0.0 2017-10-02 02:43:00 2017-10-02 03:02:00      1.0  
-22             NaN        0.0 2017-10-02 06:47:00 2017-10-02 07:11:00      1.0  
-23             NaN        0.0 2017-10-02 07:12:00 2017-10-02 07:31:00      1.0  
-24             NaN        0.0 2017-10-02 07:21:00 2017-10-02 07:38:00      1.0  
-25             NaN        0.0 2017-10-02 07:57:00 2017-10-02 08:15:00      1.0  
-26             NaN        0.0 2017-10-02 08:31:00 2017-10-02 08:50:00      1.0  
-27             NaN        0.0 2017-10-02 09:01:00 2017-10-02 09:19:00      1.0  
-28             NaN        0.0 2017-10-02 09:20:00 2017-10-02 09:43:00      1.0  
-29             NaN        0.0 2017-10-02 10:41:00 2017-10-02 10:59:00      1.0  
-..             ...        ...                 ...                 ...      ...  
-397            NaN        0.0 2017-09-29 14:00:00 2017-09-29 14:19:00      1.0  
-398            NaN        0.0 2017-09-29 18:28:00 2017-09-29 18:48:00      1.0  
-399            NaN        0.0 2017-09-30 11:49:00 2017-09-30 12:10:00      1.0  
-400            NaN        0.0 2017-09-30 14:52:00 2017-09-30 15:12:00      1.0  
-401            NaN        0.0 2017-10-01 10:25:00 2017-10-01 10:42:00      1.0  
-402            NaN        0.0 2017-10-03 13:07:00 2017-10-03 13:26:00      1.0  
-403            NaN        0.0 2017-10-05 18:01:00 2017-10-05 18:20:00      1.0  
-404            NaN        0.0 2017-10-05 18:16:00 2017-10-05 18:35:00      1.0  
-405            NaN        0.0 2017-10-05 18:17:00 2017-10-05 18:40:00      1.0  
-406            NaN        0.0 2017-10-05 18:20:00 2017-10-05 18:49:00      1.0  
-407            NaN        0.0 2017-09-30 20:10:00 2017-09-30 20:30:00      1.0  
-408            NaN        0.0 2017-10-05 17:45:00 2017-10-05 18:12:00      1.0  
-409            NaN        0.0 2017-10-05 18:03:00 2017-10-05 18:25:00      1.0  
-410            NaN        0.0 2017-09-29 14:14:00 2017-09-29 14:44:00      1.0  
-411            NaN        0.0 2017-09-29 18:35:00 2017-09-29 18:58:00      1.0  
-412            NaN        0.0 2017-10-01 04:32:00 2017-10-01 04:54:00      1.0  
-413            NaN        0.0 2017-10-02 09:26:00 2017-10-02 09:48:00      1.0  
-414            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:52:00      1.0  
-415            NaN        0.0 2017-10-05 17:33:00 2017-10-05 17:54:00      1.0  
-416            NaN        0.0 2017-10-05 17:39:00 2017-10-05 18:02:00      1.0  
-417            NaN        0.0 2017-09-30 17:52:00 2017-09-30 18:11:00      1.0  
-418            NaN        0.0 2017-10-03 07:48:00 2017-10-03 08:08:00      1.0  
-419            NaN        0.0 2017-10-04 10:56:00 2017-10-04 11:17:00      1.0  
-420            NaN        0.0 2017-10-05 17:25:00 2017-10-05 17:47:00      1.0  
-421            NaN        0.0 2017-10-05 17:29:00 2017-10-05 17:50:00      1.0  
-422            NaN        0.0 2017-10-05 17:25:00 2017-10-05 17:52:00      1.0  
-423            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:55:00      1.0  
-424            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:57:00      1.0  
-425            NaN        0.0 2017-10-05 17:58:00 2017-10-05 18:19:00      1.0  
-426            NaN        0.0 2017-10-05 18:10:00 2017-10-05 18:30:00      1.0  
+    Dunn_negligent  perc_calc          Start Date            End Date  \
+0              NaN        0.0 2017-09-29 13:58:00 2017-09-29 14:16:00   
+1              NaN        0.0 2017-09-29 14:00:00 2017-09-29 14:18:00   
+2              NaN        0.0 2017-09-29 13:57:00 2017-09-29 14:19:00   
+3              NaN        0.0 2017-09-29 14:01:00 2017-09-29 14:21:00   
+4              NaN        0.0 2017-09-29 14:04:00 2017-09-29 14:23:00   
+5              NaN        0.0 2017-09-29 14:06:00 2017-09-29 14:25:00   
+6              NaN        0.0 2017-09-29 14:06:00 2017-09-29 14:26:00   
+7              NaN        0.0 2017-09-29 14:16:00 2017-09-29 14:35:00   
+8              NaN        0.0 2017-09-29 14:27:00 2017-09-29 14:49:00   
+9              NaN        0.0 2017-09-29 14:44:00 2017-09-29 15:02:00   
+10             NaN        0.0 2017-09-29 15:09:00 2017-09-29 15:27:00   
+11             NaN        0.0 2017-09-29 15:55:00 2017-09-29 16:16:00   
+12             NaN        0.0 2017-09-29 18:28:00 2017-09-29 18:51:00   
+13             NaN        0.0 2017-09-29 19:54:00 2017-09-29 20:14:00   
+14             NaN        0.0 2017-09-29 20:56:00 2017-09-29 21:16:00   
+15             NaN        0.0 2017-09-30 11:47:00 2017-09-30 12:04:00   
+16             NaN        0.0 2017-09-30 12:56:00 2017-09-30 13:13:00   
+17             NaN        0.0 2017-09-30 14:15:00 2017-09-30 14:26:00   
+18             NaN        0.0 2017-09-30 16:19:00 2017-09-30 16:38:00   
+19             NaN        0.0 2017-10-01 21:22:00 2017-10-01 21:40:00   
+20             NaN        0.0 2017-10-01 21:47:00 2017-10-01 22:07:00   
+21             NaN        0.0 2017-10-02 02:43:00 2017-10-02 03:02:00   
+22             NaN        0.0 2017-10-02 06:47:00 2017-10-02 07:11:00   
+23             NaN        0.0 2017-10-02 07:12:00 2017-10-02 07:31:00   
+24             NaN        0.0 2017-10-02 07:21:00 2017-10-02 07:38:00   
+25             NaN        0.0 2017-10-02 07:57:00 2017-10-02 08:15:00   
+26             NaN        0.0 2017-10-02 08:31:00 2017-10-02 08:50:00   
+27             NaN        0.0 2017-10-02 09:01:00 2017-10-02 09:19:00   
+28             NaN        0.0 2017-10-02 09:20:00 2017-10-02 09:43:00   
+29             NaN        0.0 2017-10-02 10:41:00 2017-10-02 10:59:00   
+..             ...        ...                 ...                 ...   
+397            NaN        0.0 2017-09-29 14:00:00 2017-09-29 14:19:00   
+398            NaN        0.0 2017-09-29 18:28:00 2017-09-29 18:48:00   
+399            NaN        0.0 2017-09-30 11:49:00 2017-09-30 12:10:00   
+400            NaN        0.0 2017-09-30 14:52:00 2017-09-30 15:12:00   
+401            NaN        0.0 2017-10-01 10:25:00 2017-10-01 10:42:00   
+402            NaN        0.0 2017-10-03 13:07:00 2017-10-03 13:26:00   
+403            NaN        0.0 2017-10-05 18:01:00 2017-10-05 18:20:00   
+404            NaN        0.0 2017-10-05 18:16:00 2017-10-05 18:35:00   
+405            NaN        0.0 2017-10-05 18:17:00 2017-10-05 18:40:00   
+406            NaN        0.0 2017-10-05 18:20:00 2017-10-05 18:49:00   
+407            NaN        0.0 2017-09-30 20:10:00 2017-09-30 20:30:00   
+408            NaN        0.0 2017-10-05 17:45:00 2017-10-05 18:12:00   
+409            NaN        0.0 2017-10-05 18:03:00 2017-10-05 18:25:00   
+410            NaN        0.0 2017-09-29 14:14:00 2017-09-29 14:44:00   
+411            NaN        0.0 2017-09-29 18:35:00 2017-09-29 18:58:00   
+412            NaN        0.0 2017-10-01 04:32:00 2017-10-01 04:54:00   
+413            NaN        0.0 2017-10-02 09:26:00 2017-10-02 09:48:00   
+414            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:52:00   
+415            NaN        0.0 2017-10-05 17:33:00 2017-10-05 17:54:00   
+416            NaN        0.0 2017-10-05 17:39:00 2017-10-05 18:02:00   
+417            NaN        0.0 2017-09-30 17:52:00 2017-09-30 18:11:00   
+418            NaN        0.0 2017-10-03 07:48:00 2017-10-03 08:08:00   
+419            NaN        0.0 2017-10-04 10:56:00 2017-10-04 11:17:00   
+420            NaN        0.0 2017-10-05 17:25:00 2017-10-05 17:47:00   
+421            NaN        0.0 2017-10-05 17:29:00 2017-10-05 17:50:00   
+422            NaN        0.0 2017-10-05 17:25:00 2017-10-05 17:52:00   
+423            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:55:00   
+424            NaN        0.0 2017-10-05 17:32:00 2017-10-05 17:57:00   
+425            NaN        0.0 2017-10-05 17:58:00 2017-10-05 18:19:00   
+426            NaN        0.0 2017-10-05 18:10:00 2017-10-05 18:30:00   
 
-[427 rows x 11 columns]
+     mm_perc                Income  
+0        1.0    $10,000 to $29,999  
+1        1.0    $50,000 to $99,999  
+2        1.0    $30,000 to $49,999  
+3        1.0    $10,000 to $29,999  
+4        1.0    $30,000 to $49,999  
+5        1.0  $100,000 to $199,999  
+6        1.0    $10,000 to $29,999  
+7        1.0    $50,000 to $99,999  
+8        1.0  $100,000 to $199,999  
+9        1.0  $100,000 to $199,999  
+10       1.0     Less than $10,000  
+11       1.0    $50,000 to $99,999  
+12       1.0    $50,000 to $99,999  
+13       1.0    $50,000 to $99,999  
+14       1.0    $10,000 to $29,999  
+15       1.0  $100,000 to $199,999  
+16       1.0    $50,000 to $99,999  
+17       1.0    $50,000 to $99,999  
+18       1.0    $10,000 to $29,999  
+19       1.0    $50,000 to $99,999  
+20       1.0    $10,000 to $29,999  
+21       1.0    $50,000 to $99,999  
+22       1.0    $30,000 to $49,999  
+23       1.0    $50,000 to $99,999  
+24       1.0    $50,000 to $99,999  
+25       1.0    $30,000 to $49,999  
+26       1.0    $30,000 to $49,999  
+27       1.0     Less than $10,000  
+28       1.0  $100,000 to $199,999  
+29       1.0    $50,000 to $99,999  
+..       ...                   ...  
+397      1.0     Less than $10,000  
+398      1.0    $10,000 to $29,999  
+399      1.0    $30,000 to $49,999  
+400      1.0    $30,000 to $49,999  
+401      1.0    $10,000 to $29,999  
+402      1.0  $100,000 to $199,999  
+403      1.0    $50,000 to $99,999  
+404      1.0    $50,000 to $99,999  
+405      1.0  $100,000 to $199,999  
+406      1.0    $50,000 to $99,999  
+407      1.0  $100,000 to $199,999  
+408      1.0    $10,000 to $29,999  
+409      1.0    $30,000 to $49,999  
+410      1.0  $100,000 to $199,999  
+411      1.0    $10,000 to $29,999  
+412      1.0    $30,000 to $49,999  
+413      1.0    $30,000 to $49,999  
+414      1.0      $200,000 or more  
+415      1.0    $50,000 to $99,999  
+416      1.0    $10,000 to $29,999  
+417      1.0    $10,000 to $29,999  
+418      1.0  $100,000 to $199,999  
+419      1.0    $10,000 to $29,999  
+420      1.0    $50,000 to $99,999  
+421      1.0    $10,000 to $29,999  
+422      1.0    $10,000 to $29,999  
+423      1.0  $100,000 to $199,999  
+424      1.0    $50,000 to $99,999  
+425      1.0    $10,000 to $29,999  
+426      1.0    $30,000 to $49,999  
+
+[427 rows x 12 columns]
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;10000 to 29999&#39;, &#39;50000 to 99999&#39;, &#39;30000 to 49999&#39;,
+       &#39;100000 to 199999&#39;, &#39;Less than 10000&#39;, &#39;200000 or more&#39;],
+      dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;Less than 10000&#39;</span><span class="p">,</span><span class="s1">&#39;10000 to 29999&#39;</span><span class="p">,</span><span class="s1">&#39;50000 to 99999&#39;</span><span class="p">,</span><span class="s1">&#39;30000 to 49999&#39;</span><span class="p">,</span><span class="s1">&#39;100000 to 199999&#39;</span><span class="p">,</span>
+                           <span class="s1">&#39;200000 or more&#39;</span><span class="p">,</span><span class="s1">&#39;nan&#39;</span><span class="p">],[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">,</span><span class="s1">&#39;0&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;1&#39;, &#39;6&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculating-Discounted-Damages">Calculating Discounted Damages<a class="anchor-link" href="#Calculating-Discounted-Damages">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">damages</span><span class="o">*</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">req_data</span><span class="o">.</span><span class="n">mm_perc</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Replacing-above-500k-to-500k">Replacing above 500k to 500k<a class="anchor-link" href="#Replacing-above-500k-to-500k">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">req_data</span><span class="o">.</span><span class="n">Discounted_damages</span><span class="o">&gt;</span><span class="mf">500000.0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">req_data</span><span class="o">.</span><span class="n">Discounted_damages</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(((</span><span class="n">req_data</span><span class="o">.</span><span class="n">Discounted_damages</span><span class="o">&gt;</span><span class="mf">500000.0</span><span class="p">)),</span><span class="mi">500000</span><span class="p">,</span><span class="n">req_data</span><span class="o">.</span><span class="n">Discounted_damages</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">req_data</span><span class="o">.</span><span class="n">Discounted_damages</span><span class="o">&gt;</span><span class="mf">500000.0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(0, 13)</pre>
+</div>
+
 </div>
 
 </div>
@@ -12176,12 +12454,10 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">damages</span><span class="o">*</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">req_data</span><span class="o">.</span><span class="n">mm_perc</span><span class="p">)</span>
-
-<span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;winrate_percentage&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">Liability</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;winrate_percentage&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">Liability</span>
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages_mean&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span>
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages_median&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span>
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages_sd&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span>
@@ -12203,7 +12479,7 @@ dtype: bool
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -12243,37 +12519,37 @@ dtype: bool
     <tr>
       <th>1</th>
       <td>47.263682</td>
-      <td>344885.572139</td>
+      <td>97124.378109</td>
       <td>0.0</td>
-      <td>1.536480e+06</td>
+      <td>128092.776739</td>
     </tr>
     <tr>
       <th>2</th>
       <td>48.730964</td>
-      <td>460532.994924</td>
+      <td>98857.868020</td>
       <td>0.0</td>
-      <td>2.214007e+06</td>
+      <td>126814.745576</td>
     </tr>
     <tr>
       <th>3</th>
       <td>68.817204</td>
-      <td>398266.129032</td>
+      <td>130739.247312</td>
       <td>110000.0</td>
-      <td>2.561670e+06</td>
+      <td>122510.222486</td>
     </tr>
     <tr>
       <th>4</th>
       <td>60.294118</td>
       <td>108101.715686</td>
       <td>100000.0</td>
-      <td>1.066799e+05</td>
+      <td>106679.886976</td>
     </tr>
     <tr>
       <th>5</th>
       <td>57.591623</td>
       <td>92761.780105</td>
       <td>80000.0</td>
-      <td>1.009025e+05</td>
+      <td>100902.490997</td>
     </tr>
   </tbody>
 </table>
@@ -12296,7 +12572,7 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#req_data[&#39;winrate_percentage&#39;]=np.mean(req_data.Juror_Response)</span>
@@ -12308,9 +12584,9 @@ dtype: bool
 <span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages_sd1&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Discounted_damages&#39;</span><span class="p">]</span>
 <span class="c1">#print(req_data.mm_perc)</span>
 
-<span class="n">winrate_damages_plaintiffwin</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Dunn_negligent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;No&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Liability&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Scenario&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">({</span><span class="s1">&#39;Discounted_damages_mean1&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span><span class="s1">&#39;Discounted_damages_median1&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span><span class="s1">&#39;Discounted_damages_sd1&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">})</span>
+<span class="n">winrate_damages_plaintiffwin</span><span class="o">=</span><span class="n">req_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Mesa_Negligent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">req_data</span><span class="p">[</span><span class="s1">&#39;Liability&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Scenario&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">({</span><span class="s1">&#39;Discounted_damages_mean1&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span><span class="s1">&#39;Discounted_damages_median1&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">,</span><span class="s1">&#39;Discounted_damages_sd1&#39;</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">})</span>
 
-
+<span class="c1">#Here Liability is &quot;Is substantial factor for causing plaintiff injuries&quot;</span>
 <span class="n">winrate_damages_plaintiffwin</span>
 </pre></div>
 
@@ -12324,7 +12600,7 @@ dtype: bool
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -12361,33 +12637,33 @@ dtype: bool
   <tbody>
     <tr>
       <th>1</th>
-      <td>185125.000000</td>
+      <td>205494.736842</td>
       <td>180000.0</td>
-      <td>78852.429869</td>
+      <td>111371.801474</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>177743.902439</td>
-      <td>160000.0</td>
-      <td>72767.821367</td>
+      <td>202864.583333</td>
+      <td>180000.0</td>
+      <td>108895.760856</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>186972.477064</td>
+      <td>189980.468750</td>
       <td>180000.0</td>
-      <td>80274.466527</td>
+      <td>102566.329649</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>189429.906542</td>
+      <td>179290.650407</td>
       <td>180000.0</td>
-      <td>73657.559546</td>
+      <td>77900.192120</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>173118.279570</td>
+      <td>161068.181818</td>
       <td>150000.0</td>
-      <td>78781.184228</td>
+      <td>81512.690442</td>
     </tr>
   </tbody>
 </table>
@@ -12410,7 +12686,7 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -12430,28 +12706,13 @@ dtype: bool
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+<div class="prompt output_prompt">Out[14]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.FacetGrid at 0x24892ab6828&gt;</pre>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMS4yLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvNQv5yAAAGXVJREFUeJzt3X2QXNV95vHvM3pB4nVAwljRoBJZKU4wiwGPgS1qHYyNkDC2SJVJQTZmlmgjh2DAS6oCbLyL39jFVVnbEcE4cmA9OLEFiUMheyVLKozsosLbALKwEA4N1kIHbGn0BooGIWl++8c9Y5qhu6c1mtM9L8+nqmv6nnvuPb9RwTO3z719ryICM7Mc2lpdgJmNXw4YM8vGAWNm2ThgzCwbB4yZZeOAMbNsHDBmlo0DxsyyccCYWTYOmGThwoUB+OWXX429GuKASXp7e1tdgtm444Axs2wcMGaWjQPGzLJxwJhZNg4YG7V6e3u59tpr2b59e6tLsWHKGjCStkh6RtIGST2p7QRJ6yQ9n34en9olaZmkkqSNks6q2E9X6v+8pK6K9ven/ZfStqo3ho0t3d3dbNy4ke7u7laXYsPUjCOYD0XEGRHRmZZvAh6MiPnAg2kZYBEwP72WAndCERbALcA5wNnALRWBcWfqO7DdwiHGsDGit7eX1atXExGsXr3aRzFjVCs+Ii0GBv4kdQOXVrTfE4VHgXZJs4CLgHURsSMidgLrgIVp3bER8UgU9/28Z9C+qo1hY0R3dzcDt3Pt7+/3UcwYlTtgAlgr6UlJS1PbSRHxKkD6+a7UPht4uWLbcmqr116u0l5vjLeRtFRSj6Sebdu2DfNXtBzWrVvH/v37Adi/fz9r165tcUU2HLkD5ryIOIvi4881kj5Yp6+qtMUw2hsWEcsjojMiOk888cRD2dQyu/DCC5kyZQoAU6ZMYcGCBS2uyIYja8BExCvp51bgfoo5lF+ljzekn1tT9zJwcsXmHcArQ7R3VGmnzhg2RnR1dZHm7Glra6Orq2uILWw0yhYwko6SdMzAe2AB8DNgJTDwX0sX8EB6vxK4Mp1NOhfYnT7erAEWSDo+Te4uANakda9LOjedPbpy0L6qjWFjxMyZM1m0aBGSWLRoETNmzGh1STYMkzPu+yTg/vRXaDLwnYj4oaQngPskLQFeAi5L/VcBFwMlYC9wFUBE7JD0ReCJ1O8LEbEjvb8a+BYwHVidXgC31RjDxpCuri62bNnio5cxTH7wWqGzszN6enpaXYbZWFFtDvQdfCWvmWXjgDGzbBwwZpaNA8bMsnHAmFk2Dhgzy8YBY2bZOGDMLBsHjJll44Axs2wcMGaWjQPGzLJxwJhZNg4YM8vGAWNm2ThgzCwbB4yZZeOAMbNsHDBmlo0DxsyyccCYWTYOGDPLxgFjZtk4YMwsGweMmWXjgDGzbBwwZpaNA8bMsnHAmFk2Dhgzy8YBY2bZOGDMLBsHjJllkz1gJE2S9LSkH6TlUyQ9Jul5SfdKmpraj0jLpbR+bsU+bk7tP5d0UUX7wtRWknRTRXvVMcwmot7eXq699lq2b9/e9LGbcQRzPbC5YvnLwFcjYj6wE1iS2pcAOyNiHvDV1A9JpwKXA+8FFgJfT6E1CbgDWAScClyR+tYbw2zC6e7uZuPGjXR3dzd97KwBI6kD+Cjwt2lZwAXAP6Yu3cCl6f3itExa/+HUfzGwIiL2RcQvgBJwdnqVIuLFiHgTWAEsHmIMswmlt7eX1atXExGsXr266UcxkzPv/2vAnwPHpOUZwK6IOJCWy8Ds9H428DJARByQtDv1nw08WrHPym1eHtR+zhBjjIhly5ZRKpVqri+XywB0dHTU7DNv3jyuu+66kSxrzPG/Y37d3d1EBAD9/f10d3dzww03NG38bEcwki4BtkbEk5XNVbrGEOtGqr1ajUsl9Ujq2bZtW7Uuw9LX10dfX9+I7W+i8r/j4Vu3bh379+8HYP/+/axdu7ap4+c8gjkP+Liki4FpwLEURzTtkianI4wO4JXUvwycDJQlTQaOA3ZUtA+o3KZae2+dMd4mIpYDywE6OzurhlA1Q/3FHFi/bNmyRnc5IfnfMb8LL7yQVatWsX//fqZMmcKCBQuaOn62I5iIuDkiOiJiLsUk7Y8i4j8BDwGfSN26gAfS+5VpmbT+R1Ec260ELk9nmU4B5gOPA08A89MZo6lpjJVpm1pjmE0oXV1dFNOS0NbWRldX1xBbjKxWXAdzI3CDpBLFfMldqf0uYEZqvwG4CSAiNgH3Ac8CPwSuiYiD6ejk08AairNU96W+9cYwm1BmzpzJokWLkMSiRYuYMWNGU8fPPckLQESsB9an9y9SnAEa3OcN4LIa298K3FqlfRWwqkp71THMJqKuri62bNnS9KMXaFLAmFnrzJw5k9tvv70lY/urAmaWjQPGzLJxwJhZNg4YM8vGAWNm2ThgzCwbB4yZZeOAMbNsHDBmlo0DxsyyccCYWTYOGDPLxgFjZtk4YMwsGweMmWXjgDGzbBwwZpaNA8bMsnHAmFk2Dhgzy8YBY2bZOGDMLBsHjJll44Axs2wcMGaWjQPGzLJxwJhZNg4YM8tmcqsLMBvNli1bRqlUqrm+XC4D0NHRUbPPvHnzuO6660a8trHAAWN2GPr6+lpdwqjmgDGrY6gjj4H1y5Yta0Y5Y47nYMwsGweMmWWTLWAkTZP0uKSfStok6fOp/RRJj0l6XtK9kqam9iPScimtn1uxr5tT+88lXVTRvjC1lSTdVNFedQwza66cRzD7gAsi4n3AGcBCSecCXwa+GhHzgZ3AktR/CbAzIuYBX039kHQqcDnwXmAh8HVJkyRNAu4AFgGnAlekvtQZw8yaKNskb0QEsCctTkmvAC4A/iC1dwOfA+4EFqf3AP8I/LUkpfYVEbEP+IWkEnB26leKiBcBJK0AFkvaXGeMCcOnV200yDoHk440NgBbgXXAC8CuiDiQupSB2en9bOBlgLR+NzCjsn3QNrXaZ9QZY3B9SyX1SOrZtm3b4fyqY05fX59PsVp2DR3BSPp3QDki9kk6HzgduCcidtXbLiIOAmdIagfuB36nWreBYWqsq9VeLRzr9a9W33JgOUBnZ2fVPmOVT6/aaNDoEcz3gIOS5gF3AacA32l0kBRE64FzgXZJA8HWAbyS3peBkwHS+uOAHZXtg7ap1d5bZwwza6JGA6Y/feT4PeBrEfFfgVn1NpB0YjpyQdJ04CPAZuAh4BOpWxfwQHq/Mi2T1v8ozeOsBC5PZ5lOAeYDjwNPAPPTGaOpFBPBK9M2tcYwsyZqdJJ3v6QrKP5n/VhqmzLENrOA7nS2pw24LyJ+IOlZYIWkLwFPUxwRkX5+O03i7qAIDCJik6T7gGeBA8A16aMXkj4NrAEmAXdHxKa0rxtrjGFmTdRowFwF/Alwa0T8Ih1J/F29DSJiI3BmlfYXeessUGX7G8BlNfZ1K3BrlfZVwKpGxzCz5mooYCLiWUk3AnPS8i+A23IWZmZjX6NnkT4G/CUwFThF0hnAFyLi4zmLM7OhjeZrnhqd5P0cxUeOXQARsYHiTJKZjXKtvOap0TmYAxGxu7iw9tfG1XUjZmPVaL7mqdGA+ZmkPwAmSZoPXAf8c76yzGw8aPQj0rUUXzbcB3wXeA34TK6izGx8aPQs0l7gL9LLzKwhjZ5F+j7vnHPZDfQAf5OuYTEze5tGPyK9SHHrhW+m12vAr4DfSstmZu/Q6CTvmRHxwYrl70v6SUR8UNKmmluZ2YTW6BHMiZLmDCyk9zPT4psjXpWZjQuNHsH8GfCwpBco7rdyCvCnko6iuGOcmdk7NHoWaVW6/uW3KQLmuYqJ3a/lKs7MxrZDuSfvfOA9wDTgdElExD15yjKz8aDR09S3AOdT3L1/FcWd/B8GHDBmVlOjk7yfAD4M/DIirgLeBxyRrSozGxcaDZi+iOgHDkg6luIpAb+ZrywzGw8anYPpSffX/SbwJMVFd49nq8rMxoVGzyL9aXr7DUk/BI5Nt8Q0M6up4bNIkk4H5g5sI2leRPxTprrMbBxo9CzS3RQPW9sE9KfmABwwZlZTo0cw50bEqUN3MzN7S6NnkR6R5IAxs0PS6BFMN0XI/JLirnYCIiJOz1aZmY15jQbM3cAngWd4aw7GzKyuRgPmpYhYmbUSMxt3Gg2Y5yR9B/g+xUckAHya2szqaTRgplMEy4KKNp+mNrO6Gr2S96rchZjZ+NPohXbTgCUUz0aaNtAeEX+UqS4zGwcavQ7m28C7gYuAHwMdwOu5ijKz8aHRgJkXEf8d+LeI6AY+Cvz7fGWZ2XjQaMDsTz93SToNOI7ii49mZjU1GjDLJR0PfBZYCTwLfLneBpJOlvSQpM2SNkm6PrWfIGmdpOfTz+NTuyQtk1SStFHSWRX76kr9n5fUVdH+fknPpG2WSVK9McysueoGjKQbJN0AHAtcBXQCd1CEy1FD7PsA8GcR8TvAucA16ftMNwEPRsR84MG0DMV9fuen11LgzlTDCcAtwDnA2cAtFYFxZ+o7sN3C1F5rDDNroqGOYI5Jr07gamA28BvApyhuAF5TRLwaEU+l968Dm9P2i3nrWUrdwKXp/WLgnig8CrRLmkUxsbwuInZExE5gHbAwrTs2Ih6JiKC4AXnlvqqNYWZNVPc0dUR8HkDSWuCsFBRI+hzwD40OImkucCbwGHBSRLya9v+qpHelbrOBlys2K6e2eu3lKu3UGWNwXUspjoCYM2dOtS5mdhganYOZw9sfEfsmDU7ySjoa+B7wmYh4rV7XKm0xjPaGRcTyiOiMiM4TTzzxUDY1swY0+lWBbwOPS7qf4n/i36OBR8ZKmkIRLn9f8b2lX0malY4sZlE8oQCKI5CTKzbvAF5J7ecPal+f2juq9K83hpk1UUNHMBFxK8Uk705gF3BVRPyvetukMzp3AZsj4isVq1YCA2eCuoAHKtqvTGeTzgV2p485a4AFko5Pk7sLgDVp3euSzk1jXTloX9XGMLMmavim32nC9qlD2Pd5pHvISNqQ2v4bcBtwn6QlwEvAZWndKuBioATspQg0ImKHpC8CT6R+X4iIHen91cC3KL6MuTq9qDOGmTXRoTyb+pBExMNUnyeB4imRg/sHcE2Nfd1NcdOrwe09wGlV2rdXG8PMmitbwJgtW7aMUqk07O2ff/55AK677rph72PevHmHtb0dHgeMZVMqlXh609PQPswdpJuzPv2vTw9v+131Vx9uAIJDcCgOGMurHfrPb81tnNvW1z+HUSqVeG7DBt59OGOkn7s2bKjbr5ZfHsbYY4EDxia0dwNLak4V5nfXoV26NeY0eqGdmdkhc8CYWTYOGDPLxgFjZtk4YMwsGweMmWXj09RVjIYrUKH+BVijocbxfIGYjQwHTBWlUomnn3mW/iNPGNb2erO4tuHJF4Z/GVXb3h1115dKJf7lZ08x5+iDw9r/1P3FwesbW54Yomd1L+2ZNKztbGJxwNTQf+QJvHHqJS0bf9qzPxiyz5yjD/LZzj1NqOadvtRzdEvGnWjG+tcZHDBmo1ipVGLTM5tpP7LqXV8b0v9mcaXyv76wfVjb79o7/Pu1OWDMRrn2I9/Fh3778paN/9BzK4a9rc8imVk2Dhgzy8YBY2bZOGDMLBsHjJll44Axs2wcMGaWjQPGzLJxwJhZNg4YM8vGAWNm2ThgzCwbB4yZZeOAMbNsHDBmlo0DxsyyccCYWTYOGDPLJtstMyXdDVwCbI2I01LbCcC9wFxgC/D7EbFTkoC/Ai4G9gL/OSKeStt0AZ9Nu/1SRHSn9vcD3wKmA6uA6yMiao2R6/e02srlMuyGtvUt+ju2C8pRbs3YBuQ9gvkWsHBQ203AgxExH3gwLQMsAuan11LgTvh1IN0CnAOcDdwi6fi0zZ2p78B2C4cYw8yaLNsRTET8RNLcQc2LgfPT+25gPXBjar8nIgJ4VFK7pFmp77qI2AEgaR2wUNJ64NiIeCS13wNcCqyuM4Y1WUdHB9u0jf7z+1syftv6Njpmd9RcXy6XeR24i2heUYO8Cuwpj9+jrGYfu54UEa8CpJ8Dz2KYDbxc0a+c2uq1l6u01xvjHSQtldQjqWfbtm3D/qXMrLrR8tgSVWmLYbQfkohYDiwH6OzsbN2fMWuJjo4OdvX2sqTqf07NcRdBe0fto6yxrtlHML9KH31IPwee6FQGTq7o1wG8MkR7R5X2emOYWZM1+whmJdAF3JZ+PlDR/mlJKygmdHdHxKuS1gD/s2JidwFwc0TskPS6pHOBx4ArgduHGMNszCmXy+ze+/phPfzscO3au5Uo9w1r25ynqb9LMdk6U1KZ4mzQbcB9kpYALwGXpe6rKE5RlyhOU18FkILki8DAE9q/MDDhC1zNW6epV6cXdcYwsybLeRbpihqrPlylbwDX1NjP3cDdVdp7gNOqtG+vNobZWNTR0YH2bW/5o2Nnd8wY1ra+ktfMsnHAmFk2Dhgzy8YBY2bZOGDMLBsHjJll44Axs2wcMGaWjQPGzLJxwJhZNg4YM8vGAWNm2ThgzCwbB4yZZeOAMbNsHDBmlo0DxsyyccCYWTYOGDPLxgFjZtk4YMwsGweMmWXjgDGzbBwwZpaNA8bMsnHAmFk2Dhgzy8YBY2bZOGDMLBsHjJll44Axs2wcMGaWjQPGzLIZtwEjaaGkn0sqSbqp1fWYTUTjMmAkTQLuABYBpwJXSDq1tVWZTTyTW11AJmcDpYh4EUDSCmAx8GwjG5fLZdpe386RPd3VO/QfhIjDq1CCtkm11x88QLl8oG6NO3ZN5o8fOq7q+v39ov8wS2wTTGmrvpN9B8UJ5fLQO9kFbetr/B3bA9T+FRszGTi69tjMrr/5L4G7qP0PtR14c3iV/dpUYEad8duH2H7X3q089NyKmuv3vLGTA/37h1ldYXLbFI6ednzN8WfX/A2G2O/hFDWKzQZerlguA+cM7iRpKbAUYM6cOb9ub29vp6+vr+bO9+3bR39//2EV2NbWxhFHTK3TYyrt7bX/0xuqRvbtg8OskbY22o44ouqq6amGeubNm1d3fblcrv87NGD69Ol0zO6ovnJ2/RqGqg9gT7lM/2HWeMT06bR3VK+xfYg6GqmxXO6jr+/w/ppMnz6N2R3VQ2Q2MxqqoxrF4f4lHoUkXQZcFBH/JS1/Ejg7Iq6ttU1nZ2f09PQ0q0SzsU6NdBqXczAURywnVyx3AK+0qBazCWu8BswTwHxJp0iaClwOrGxxTWYTzricg4mIA5I+DawBJgF3R8SmFpdlNuGMy4ABiIhVwKpW12E2kY3Xj0hmNgo4YMwsGweMmWXjgDGzbBwwZpbNuLySdzgkbQP+3wjucibQO4L7y8E1joyJWGNvRCwcqpMDJhNJPRHR2eo66nGNI8M11uaPSGaWjQPGzLJxwOSzvNUFNMA1jgzXWIPnYMwsGx/BmFk2Dhgzy8YBM8Ik3S1pq6SftbqWWiSdLOkhSZslbZJ0fatrGkzSNEmPS/ppqvHzra6pGkmTJD0t6QetrqUaSVskPSNpg6Sm37LRczAjTNIHKW5nfU9EnNbqeqqRNAuYFRFPSToGeBK4NCIauil6M0gScFRE7JE0BXgYuD4iHm1xaW8j6QagEzg2Ii5pdT2DSdoCdEZESy4E9BHMCIuInwA7Wl1HPRHxakQ8ld6/DmxmyPvvN1cU9qTFKek1qv4aSuoAPgr8batrGa0cMBOcpLnAmcBjra3kndLHjw3AVmBdRIy2Gr8G/DlwmI9vyCqAtZKeTE/RaCoHzAQm6Wjge8BnIuK1VtczWEQcjIgzKG7afrakUfORU9IlwNaIeLLVtQzhvIg4i+IhhNekj/BN44CZoNK8xveAv4+If2p1PfVExC5gPTDkl+ua6Dzg42mOYwVwgaS/a21J7xQRr6SfW4H7KR5K2DQOmAkoTaDeBWyOiK+0up5qJJ0oqT29nw58BHiutVW9JSJujoiOiJhL8dSKH0XEH7a4rLeRdFSaxEfSUcACoKlnNx0wI0zSd4FHgPdIKkta0uqaqjgP+CTFX90N6XVxq4saZBbwkKSNFI+hWRcRo/JU8Ch2EvCwpJ8CjwP/NyJ+2MwCfJrazLLxEYyZZeOAMbNsHDBmlo0DxsyyccCYWTYOGBtRkv4ifft5Yzr9fU4LavgTSVc2e1x7J5+mthEj6T8AXwHOj4h9kmYCUweuJm1SDZMj4kCzxrP6Jre6ABtXZlE8L2cfwMAtAiR9APgr4ChgH/BhYC9wG3A+cARwR0T8jaTzgc9RPMPnNIpbSfxhRISk/wF8DJgO/DPwqdS+Pi2fB6xMV6/uiYi/lHQG8A3gSOAF4I8iYmfmfwdL/BHJRtJa4GRJ/yLp65J+V9JU4F6Ke7m8j+KS/z5gCbA7Ij4AfAD4Y0mnpP2cCXwGOBX4TYrgAPjriPhAus/OdKDy/ivtEfG7EfG/B9V0D3BjRJwOPAPcMtK/tNXmgLERk+7f8n5gKbCNIlg+BbwaEU+kPq+ljzALgCvT7RgeA2YA89OuHo+IckT0AxuAuan9Q5Iek/QMcAHw3orh7x1cj6TjKILnx6mpG2jqt4knOn9EshEVEQcpvvm8PgXBNVS/UZSAayNizdsai49I+yqaDgKTJU0Dvk5xd7aXJX0OmFbR799G6newkeMjGBsxkt4jaX5F0xkUd8v7jTQPg6RjJE0G1gBXp9tGIOm30jd+axkIk950H5tPDFVPROwGdkr6j6npk8CP62xiI8xHMDaSjgZuT7dZOACUKD4u/Z/UPp1i/uUjFLeZnAs8lW4fsQ24tNaOI2KXpG9SzKNsofiGdSO6gG9IOhJ4Ebjq0H8tGy6fpjazbPwRycyyccCYWTYOGDPLxgFjZtk4YMwsGweMmWXjgDGzbP4/5bBH7aAK4TwAAAAASUVORK5CYII=
-"
->
+<pre>&lt;seaborn.axisgrid.FacetGrid at 0x109903b70&gt;</pre>
 </div>
 
 </div>
@@ -12462,7 +12723,7 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Scenario</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">Liability</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
@@ -12488,7 +12749,7 @@ dtype: bool
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -12596,7 +12857,7 @@ dtype: bool
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">req_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;old_data.csv&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
